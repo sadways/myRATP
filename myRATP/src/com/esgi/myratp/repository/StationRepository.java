@@ -8,9 +8,11 @@ import android.database.Cursor;
 
 import com.esgi.myratp.application.MyRATPApplication;
 import com.esgi.myratp.database.MyRATPBDD;
+import com.esgi.myratp.database.StationsTable;
 import com.esgi.myratp.mapper.IStationMapper;
 import com.esgi.myratp.mapper.StationMapperCursor;
 import com.esgi.myratp.models.Station;
+
 
 public class StationRepository implements IStationRepository
 {
@@ -29,34 +31,58 @@ public class StationRepository implements IStationRepository
     public void insertStation(Station station)
     {
         ContentValues values = new ContentValues();
-        values.put("stationLatitude", station.getLatitude());
-        values.put("stationLongitue", station.getLongitude());
-        values.put("stationNom", station.getNom());
-        values.put("stationVille", station.getVille());
-        values.put("stationType", station.getType());
+        values.put(StationsTable.LATITUDE, station.getLatitude());
+        values.put(StationsTable.LONGITUDE, station.getLongitude());
+        values.put(StationsTable.NOM, station.getNom());
+        values.put(StationsTable.VILLE, station.getVille());
+        values.put(StationsTable.TYPE, station.getType());
 
-        _stationdb.insert("Stations", null, values);
+        _stationdb.insert(StationsTable.TABLE, null, values);
         
     }
 
     @Override
     public List<Station> getAllStation()
     {
-        // TODO Auto-generated method stub
-        return null;
+        String[] columns = new String[] { StationsTable.NOM };
+        Cursor c = _stationdb.query(StationsTable.TABLE, columns, null, null, null, null, null);
+        List<Station> result = _stationMapper.Map(c);
+        return result;
     }
 
     @Override
     public Station getByNom(String nom)
     {
-        // TODO Auto-generated method stub
+        String[] columns = new String[] { StationsTable.NOM };
+        String whereClause = StationsTable.NOM + " = \"" + nom +"\"";
+        
+        Cursor c = _stationdb.query(StationsTable.TABLE, columns, whereClause, null, null, null, null);
+        
+        List<Station> result = _stationMapper.Map(c);
+        if(null == result)
+            return null;
+        
+        if(result.size() > 0)
+            return result.get(0);
+        
         return null;
     }
 
     @Override
     public Station getByType(String type)
     {
-        // TODO Auto-generated method stub
+        String[] columns = new String[] { StationsTable.NOM };
+        String whereClause = StationsTable.TYPE + " = \"" + type +"\"";
+        
+        Cursor c = _stationdb.query(StationsTable.TABLE, columns, whereClause, null, null, null, null);
+        
+        List<Station> result = _stationMapper.Map(c);
+        if(null == result)
+            return null;
+        
+        if(result.size() > 0)
+            return result.get(0);
+        
         return null;
     }
 

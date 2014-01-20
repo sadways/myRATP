@@ -19,7 +19,7 @@ public class MyRATPBDD extends SQLiteOpenHelper {
 	
 	private static String DB_PATH = "assets/";
 
-	private static String DB_NAME = "myRATPDB.sqlite";
+	private static String DB_NAME = "stationdb.sqlite";
 
 	private SQLiteDatabase myDataBase;
 
