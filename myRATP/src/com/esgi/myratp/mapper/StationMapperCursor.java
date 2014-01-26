@@ -1,6 +1,7 @@
 package com.esgi.myratp.mapper;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import com.esgi.myratp.database.StationsTable;
@@ -15,7 +16,7 @@ public class StationMapperCursor implements IStationMapper<Cursor, List<Station>
     public List<Station> Map(Cursor item)
     {
         if(item.getCount() == 0)
-            return null;
+            return Collections.emptyList();
         
         List<Station> result = new ArrayList<Station>();
         

@@ -1,6 +1,6 @@
 package com.esgi.myratp.adapter;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import com.esgi.myratp.R;
 import com.esgi.myratp.models.Station;
@@ -10,37 +10,17 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.ImageView;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-public class StationAdapter extends BaseAdapter
+public class StationAdapter extends ArrayAdapter<Station>
 {
-    private ArrayList<Station> _stations;
-    private Context _context;
-    
-    public StationAdapter(ArrayList<Station> stations, Context context)
-    {
-        _stations = stations;
-        _context = context;
-    }
-    
-    @Override
-    public int getCount()
-    {
-        return _stations.size();
-    }
-
-    @Override
-    public Object getItem(int arg0)
-    {
-        return _stations.get(arg0);
-    }
-
-    @Override
-    public long getItemId(int arg0)
-    {
-        return arg0;
+	private List<Station> objets;
+	
+    public StationAdapter(Context context, int resource, List<Station> objects) {
+		super(context, resource, objects);
+		this.objets = objects;
+		
     }
 
     @Override
@@ -49,16 +29,15 @@ public class StationAdapter extends BaseAdapter
         View v = arg1;
         if (v == null)
         {
-            LayoutInflater vi = (LayoutInflater)_context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            //v = vi.inflate(R.layout., null);
+            LayoutInflater vi = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            v = vi.inflate(R.layout.list_item_station, null);
         }
         
-        Station station = new Station();
+        Station station = objets.get(arg0);
 
         //ImageView image = (ImageView) v.findViewById(R.id.iconFav);
-        //TextView nomVille = (TextView)v.findViewById(R.id.NomVille);
-        station = _stations.get(arg0);
-        
+        TextView nomStation = (TextView)v.findViewById(R.id.nomStation);
+        nomStation.setText(station.getNom());
         //nomVille.setText(station.getVille());
         
         return v;

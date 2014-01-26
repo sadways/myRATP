@@ -6,7 +6,6 @@ import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.Cursor;
 
-import com.esgi.myratp.application.MyRATPApplication;
 import com.esgi.myratp.database.MyRATPBDD;
 import com.esgi.myratp.database.StationsTable;
 import com.esgi.myratp.mapper.IStationMapper;
@@ -16,7 +15,7 @@ import com.esgi.myratp.models.Station;
 
 public class StationRepository implements IStationRepository
 {
-    private static final SQLiteDatabase _stationdb = MyRATPBDD.getStations().getWritableDatabase();
+    private static final SQLiteDatabase _stationdb = MyRATPBDD.getStationsTable().getWritableDatabase();
     private static final IStationMapper<Cursor, List<Station>> _stationMapper = new StationMapperCursor();
     
     private static StationRepository _instance;

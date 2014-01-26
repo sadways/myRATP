@@ -4,5 +4,6 @@
     <string name="app_name">myRATP</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    <string name="no_item">Aucune station à afficher</string>
 
 </resources>
