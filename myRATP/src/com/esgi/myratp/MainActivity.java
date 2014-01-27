@@ -5,7 +5,6 @@ import android.app.ListActivity;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 
 public class MainActivity extends ListActivity {
@@ -35,7 +34,8 @@ public class MainActivity extends ListActivity {
         	  startActivity(intent_update);
               return true;
           case R.id.filter:
-              Toast.makeText(MainActivity.this, "Filtrer", Toast.LENGTH_SHORT).show();
+        	  Intent intent_filter = new Intent(MainActivity.this, Filter_station.class);
+        	  startActivity(intent_filter);
               return true;
          case R.id.go:
              finish();

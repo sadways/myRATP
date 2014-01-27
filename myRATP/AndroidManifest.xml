@@ -11,11 +11,11 @@
     <application
         android:allowBackup="true"
         android:icon="@drawable/iconeratp"
-        android:label="@string/app_name"
+        android:label="MyRATP"
         android:theme="@style/AppTheme" >
         <activity
             android:name="com.esgi.myratp.MainActivity"
-            android:label="Réseau RATP" >
+            android:label="Liste des stations" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,7 +28,11 @@
         </activity>
         <activity
             android:name="com.esgi.myratp.Update_station"
-            android:label="@string/title_activity_update_station" >
+            android:label="Modifier une station" >
+        </activity>
+        <activity
+            android:name="com.esgi.myratp.Filter_station"
+            android:label="@string/title_activity_filter_station" >
         </activity>
     </application>
 
