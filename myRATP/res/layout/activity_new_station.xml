@@ -9,8 +9,103 @@
     tools:context=".New_station" >
 
     <TextView
+        android:id="@+id/lbl_nom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:layout_alignBaseline="@+id/name"
+        android:layout_alignBottom="@+id/name"
+        android:layout_alignParentLeft="true"
+        android:text="Nom" />
+    
+    <TextView
+        android:id="@+id/lbl_prenom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/surname"
+        android:layout_alignBottom="@+id/surname"
+        android:layout_alignParentLeft="true"
+        android:text="Prénom" />
+    
+    <TextView
+        android:id="@+id/lbl_localite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/localite"
+        android:layout_alignBottom="@+id/localite"
+        android:layout_alignParentLeft="true"
+        android:text="Localité" />
+    
+    <TextView
+        android:id="@+id/lbl_latitude"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/latitude"
+        android:layout_alignBottom="@+id/latitude"
+        android:layout_alignParentLeft="true"
+        android:text="Latitude" />
+    
+    <TextView
+        android:id="@+id/lbl_longitude"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/longitude"
+        android:layout_alignBottom="@+id/longitude"
+        android:layout_alignParentLeft="true"
+        android:text="Longitude" />
+    
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="10dp"
+        android:ems="20" />
+    
+    <EditText
+        android:id="@+id/surname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="60dp"
+        android:ems="20" />
+    
+    <EditText
+        android:id="@+id/localite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="110dp"
+        android:ems="20" />
+    
+    <EditText
+        android:id="@+id/latitude"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="160dp"
+        android:ems="20" />
+    
+    <EditText
+        android:id="@+id/longitude"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="210dp"
+        android:ems="20" />
+
+    <Button
+        android:id="@+id/btn_new_station"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="280dp"  
+        android:ems="100"    
+        android:text="Enregister" />
 
 </RelativeLayout>
