@@ -15,12 +15,17 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="com.esgi.myratp.MainActivity"
-            android:label="@string/app_name" >
+            android:label="Réseau RATP" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.esgi.myratp.New_station"
+            android:label="Ajouter une station" >
+        </activity>
     </application>
+
 </manifest>
