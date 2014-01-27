@@ -1,9 +1,17 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android" >
-
-    <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:showAsAction="never"
-        android:title="@string/action_settings"/>
-
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >        	
+	<item android:id="@+id/news"
+	android:title="@string/Nouveau" 
+	android:icon="@drawable/ic_ajout"/>
+	
+	<item android:id="@+id/update"
+	android:title="@string/Modifier" 
+	android:icon="@drawable/ic_modif"/>
+	
+	<item android:id="@+id/filter"
+	android:title="@string/Filtrer" 
+	android:icon="@drawable/ic_filter"/>
+	
+	<item android:id="@+id/go"
+	android:title="@string/Quitter" 
+	android:icon="@drawable/ic_go"/>		 	 
 </menu>

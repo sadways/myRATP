@@ -5,5 +5,9 @@
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="no_item">Aucune station à afficher</string>
-
+    <string name="Nouveau">Nouveau</string>
+	<string name="Modifier">Modifier</string>
+	<string name="Filtrer">Filtrer</string>
+	<string name="Quitter">Quitter</string>
+	
 </resources>

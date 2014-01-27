@@ -1,7 +1,6 @@
 package com.esgi.myratp;
 
 import android.os.Bundle;
-import android.app.Activity;
 import android.app.ListActivity;
 import android.view.Menu;
 
