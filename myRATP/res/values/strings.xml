@@ -13,5 +13,6 @@
     <string name="title_activity_new_station">New_station</string>
     <string name="title_activity_update_station">Modifier une station</string>
     <string name="title_activity_filter_station">Filtrer</string>
+    <string name="title_activity_splash_screen">SplashScreen</string>
 
 </resources>
