@@ -27,12 +27,12 @@ public class MainActivity extends ListActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
        switch (item.getItemId()) {
           case R.id.news:
-        	  Intent intent = new Intent(MainActivity.this, New_station.class);
-        	  startActivity(intent);
-        	  Toast.makeText(MainActivity.this, "Ajouter une station", Toast.LENGTH_SHORT).show();
+        	  Intent intent_new = new Intent(MainActivity.this, New_station.class);
+        	  startActivity(intent_new);
         	  return true;
           case R.id.update:
-              Toast.makeText(MainActivity.this, "Modifier/Supprimer une station", Toast.LENGTH_SHORT).show();
+        	  Intent intent_update = new Intent(MainActivity.this, Update_station.class);
+        	  startActivity(intent_update);
               return true;
           case R.id.filter:
               Toast.makeText(MainActivity.this, "Filtrer", Toast.LENGTH_SHORT).show();

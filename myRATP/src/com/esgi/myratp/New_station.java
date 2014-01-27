@@ -22,12 +22,12 @@ public class New_station extends Activity {
 	}
 	
 	public boolean onOptionsItemSelected(MenuItem item) {
-	       switch (item.getItemId()) {
-	          case R.id.back:
-	        	  Intent intent = new Intent(New_station.this, MainActivity.class);
-	        	  startActivity(intent);
-	              return true;
-	       }
-	       return false;}
+       switch (item.getItemId()) {
+          case R.id.back:
+        	  Intent intent = new Intent(New_station.this, MainActivity.class);
+        	  startActivity(intent);
+              return true;
+       }
+       return false;}
 
 }
