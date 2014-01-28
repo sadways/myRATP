@@ -5,6 +5,9 @@ import android.app.ListActivity;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 
 import java.util.List;
 
@@ -14,17 +17,26 @@ import com.esgi.myratp.models.Station;
 
 
 public class MainActivity extends ListActivity {
+	private List<Station> allStations; 
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		//alimentation de la ListView
-		RatpDao dao = new RatpDao(this);
-		List<Station> allStations = dao.getAllStations();
-		StationAdapter adapter = new StationAdapter(this, android.R.layout.simple_expandable_list_item_1, allStations);
-		this.setListAdapter(adapter);
+		this.GetAndDisplayData();
+		
+		//gestion du clique sur un item pour lancer la mise à jour
+		this.getListView().setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+				Intent intent = new Intent(getApplicationContext(), Update_station.class);
+				intent.putExtra("update", true);
+				intent.putExtra("ID", allStations.get(arg2).getId());
+				startActivity(intent);
+			}
+        });
 	}
 
 	@Override
@@ -37,13 +49,13 @@ public class MainActivity extends ListActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
        switch (item.getItemId()) {
           case R.id.news:
-        	  Intent intent_new = new Intent(MainActivity.this, New_station.class);
+        	  Intent intent_new = new Intent(MainActivity.this, AddOrUpdateStationActivity.class);
         	  startActivity(intent_new);
         	  return true;
-          case R.id.update:
+          /*case R.id.update:
         	  Intent intent_update = new Intent(MainActivity.this, Update_station.class);
         	  startActivity(intent_update);
-              return true;
+              return true;*/
           case R.id.filter:
         	  Intent intent_filter = new Intent(MainActivity.this, Filter_station.class);
         	  startActivity(intent_filter);
@@ -52,5 +64,21 @@ public class MainActivity extends ListActivity {
              finish();
              return true;
        }
-       return false;}
+       return false;
+   }
+    
+    @Override
+    protected void onResume(){
+    	super.onResume();
+    	this.GetAndDisplayData();
+    }
+    
+    private void GetAndDisplayData(){
+    	//alimentation de la ListView
+		RatpDao dao = new RatpDao(this);
+		allStations = dao.getAllStations();
+		StationAdapter adapter = new StationAdapter(this, android.R.layout.simple_expandable_list_item_1, allStations);
+		this.setListAdapter(adapter);
+    }
+
 }

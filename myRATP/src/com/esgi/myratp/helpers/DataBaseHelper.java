@@ -26,7 +26,7 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 
          try {
              String myPath = DATABASE_PATH + DATABASE_NAME;
-             checkDB = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
+             checkDB = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READWRITE);
          } catch (SQLiteException e) {
              e.printStackTrace();
          } catch (Exception ep) {
@@ -48,7 +48,7 @@ public class DataBaseHelper extends SQLiteOpenHelper{
          } else {
              try {
                  copyDatabase();
-                 this.myDataBase = this.getReadableDatabase();
+                 this.myDataBase = this.getWritableDatabase();
              } catch (IOException e) {
                  throw new Error("Error copying database");
              }

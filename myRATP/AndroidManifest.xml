@@ -30,7 +30,7 @@
             android:label="Liste des stations" >
         </activity>
         <activity
-            android:name="com.esgi.myratp.New_station"
+            android:name="com.esgi.myratp.AddOrUpdateStationActivity"
             android:label="Ajouter une station" >
         </activity>
         <activity
