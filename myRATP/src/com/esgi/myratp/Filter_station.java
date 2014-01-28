@@ -5,13 +5,58 @@ import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 
-public class Filter_station extends Activity {
+public class Filter_station extends Activity implements OnClickListener{
+	Boolean metro, rer, all, tramway;
+	CheckBox cbMetro, cbAll, cbRER, cbTram;
+	Button btnFilter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_filter_station);
+		
+		cbMetro = (CheckBox)findViewById(R.id.chkMetro);
+		cbAll = (CheckBox)findViewById(R.id.chkAll);
+		cbRER = (CheckBox)findViewById(R.id.chkRER);
+		cbTram = (CheckBox)findViewById(R.id.chkTramway);
+		btnFilter = (Button)findViewById(R.id.btn_filter_stations);
+		
+		cbAll.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
+				all = arg1;
+			}
+		});
+		
+		cbRER.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
+				rer = arg1;
+			}
+		});
+		
+		cbMetro.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
+				metro = arg1;
+			}
+		});
+		
+		cbTram.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
+				tramway = arg1;
+			}
+		});
+		
+		btnFilter.setOnClickListener(this);
 	}
 
 	@Override
@@ -28,5 +73,17 @@ public class Filter_station extends Activity {
 	        	  startActivity(intent);
 	              return true;
 	       }
-	       return false;}
+	       return false;
+	}
+
+	@Override
+	public void onClick(View v) {
+		Intent intent = new Intent();
+		intent.putExtra("metro", metro);
+		intent.putExtra("rer", rer);
+		intent.putExtra("all", all);
+		intent.putExtra("tramway", tramway);
+		setResult(RESULT_OK, intent);
+		finish();
+	}
 }

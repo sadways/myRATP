@@ -5,10 +5,10 @@ import com.esgi.myratp.models.Station;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,7 +30,7 @@ public class Update_station extends Activity implements OnClickListener{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_new_station);
+		setContentView(R.layout.activity_update_station);
 		dao = new RatpDao(this);
 		
 		txtName = (EditText)findViewById(R.id.new_name);
@@ -75,7 +75,24 @@ public class Update_station extends Activity implements OnClickListener{
 
 	@Override
 	public void onClick(View arg0) {
-		this.SaveData();
+		if (txtName.getText().toString().length() > 0
+			&& txtLigne.getText().toString().length() > 0
+			&& txtLocalite.getText().toString().length() > 0
+			&& txtLatitude.getText().toString().length() > 0
+			&& txtLongitude.getText().toString().length() > 0) {
+			this.SaveData();
+		}
+		else {
+			AlertDialog.Builder build = new AlertDialog.Builder(Update_station.this);
+			build.setTitle("Champs incomplets");
+			build.setMessage("Veuillez remplir les champs correctement");
+			build.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                       dialog.cancel();
+                }
+            });
+			build.create().show();
+		}
 	}
 	
 	private final void SaveData(){
@@ -88,6 +105,8 @@ public class Update_station extends Activity implements OnClickListener{
 		
 		if (this.hasToUpdate){
 			dao.updateStation(station.getId(), values);
+		} else {
+			dao.addStation(values);
 		}
 		
 		finish();

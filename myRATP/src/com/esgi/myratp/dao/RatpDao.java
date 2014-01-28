@@ -7,6 +7,7 @@ import java.util.List;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.util.Log;
 
 import com.esgi.myratp.helpers.DataBaseHelper;
 import com.esgi.myratp.models.Station;
@@ -40,6 +41,29 @@ public class RatpDao {
 		return result;
 	}
 	
+	public List<Station> getFilteredStations(Boolean all, Boolean metro, Boolean rer, Boolean tramway){
+		List<Station> result = new ArrayList<Station>();
+		
+		String query = "SELECT * FROM " + TABLE + " where nomStation != ''";
+		if (!all){
+			if (metro)
+				query += " and typeStation = 'metro'";
+			if (rer)
+				query += " and typeStation = 'rer'";
+			if (tramway)
+				query += " and typeStation = 'tramway'";
+		}
+		
+		Cursor sc = this.dbHelper.getDbInstance().rawQuery(query, null);
+        if (sc.moveToFirst()) {
+            do {
+            	result.add(MapStation(sc));
+            } while (sc.moveToNext());
+        }
+        sc.close();
+		return result;
+	}
+	
 	public Station getElementById(int elementId){
 		Cursor c = this.dbHelper.getDbInstance().rawQuery("SELECT * FROM " + this.TABLE + " WHERE idStation = " +elementId, null);
 		Station station;
@@ -52,8 +76,47 @@ public class RatpDao {
 		return station;
 	}
 	
+	public Station getElementByName(String name){
+		Cursor c = this.dbHelper.getDbInstance().rawQuery("SELECT * FROM " + this.TABLE + " WHERE nomStation = '" +name+"'", null);
+		Station station;
+		if (c.moveToFirst())
+			station = MapStation(c);
+		else
+			station = null;
+		
+		c.close();
+		return station;
+	}
+	
+	public void addStation(ContentValues values){
+		Cursor c = this.dbHelper.getDbInstance().rawQuery("SELECT MAX(idStation) FROM " + this.TABLE, null);
+		int maxId;
+		if (c.moveToFirst()){
+			maxId = c.getInt(0);
+		} else {
+			maxId = 0;
+		}
+		
+		if (maxId != 0){
+			try {
+				this.dbHelper.getDbInstance().insert(TABLE, null, values);
+				Log.v("DB", "success");	
+			} catch (Exception e) {
+				Log.v("DB", e.getMessage());
+			}
+		}
+	}
+	
 	public void updateStation(int stationId, ContentValues values){
 		this.dbHelper.getDbInstance().update(this.TABLE, values, this.ID +"="+stationId, null);
+	}
+	
+	public void deleteStation(int elementId){
+		dbHelper.getDbInstance().delete(TABLE, ID+"="+elementId, null);
+	}
+	
+	public void kill(){
+		this.dbHelper.getDbInstance().close();
 	}
 	
 	private Station MapStation(Cursor sc){

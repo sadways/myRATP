@@ -8,4 +8,46 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".Filter_station" >
 
+    <CheckBox
+        android:id="@+id/chkAll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="10dp"
+        android:text="Toutes" />
+ 
+    <CheckBox
+        android:id="@+id/chkMetro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="60dp"
+        android:text="Metro"
+        android:checked="true" />
+ 
+    <CheckBox
+        android:id="@+id/chkRER"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="110dp"
+        android:text="RER" />
+    
+    <CheckBox
+        android:id="@+id/chkTramway"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="160dp"
+        android:text="Tramway" />
+    
+    <Button
+        android:id="@+id/btn_filter_stations"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="170dp"
+        android:text="Filtrer"
+        android:ems="7" />
+ 
+    
 </RelativeLayout>
