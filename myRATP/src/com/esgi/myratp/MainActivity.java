@@ -6,14 +6,25 @@ import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.List;
+
+import com.esgi.myratp.adapter.StationAdapter;
+import com.esgi.myratp.dao.RatpDao;
+import com.esgi.myratp.models.Station;
+
 
 public class MainActivity extends ListActivity {
-
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);		
-
+		setContentView(R.layout.activity_main);
+		
+		//alimentation de la ListView
+		RatpDao dao = new RatpDao(this);
+		List<Station> allStations = dao.getAllStations();
+		StationAdapter adapter = new StationAdapter(this, android.R.layout.simple_expandable_list_item_1, allStations);
+		this.setListAdapter(adapter);
 	}
 
 	@Override

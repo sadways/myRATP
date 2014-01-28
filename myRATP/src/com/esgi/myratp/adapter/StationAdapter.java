@@ -6,6 +6,7 @@ import com.esgi.myratp.R;
 import com.esgi.myratp.models.Station;
 
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,30 +16,25 @@ import android.widget.TextView;
 
 public class StationAdapter extends ArrayAdapter<Station>
 {
-	private List<Station> objets;
+	private List<Station> stations;
 	
-    public StationAdapter(Context context, int resource, List<Station> objects) {
-		super(context, resource, objects);
-		this.objets = objects;
+    public StationAdapter(Context context, int resource, List<Station> listStations) {
+		super(context, resource, listStations);
+		this.stations = listStations;
 		
     }
 
-    @Override
-    public View getView(int arg0, View arg1, ViewGroup arg2)
-    {
+	@Override
+    public View getView(int arg0, View arg1, ViewGroup arg2) {
         View v = arg1;
-        if (v == null)
-        {
+        if (v == null) {
             LayoutInflater vi = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             v = vi.inflate(R.layout.list_item_station, null);
         }
         
-        Station station = objets.get(arg0);
-
-        //ImageView image = (ImageView) v.findViewById(R.id.iconFav);
-        TextView nomStation = (TextView)v.findViewById(R.id.nomStation);
+        Station station = stations.get(arg0);
+		TextView nomStation = (TextView)v.findViewById(R.id.nomStation);
         nomStation.setText(station.getNom());
-        //nomVille.setText(station.getVille());
         
         return v;
     }

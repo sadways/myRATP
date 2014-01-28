@@ -9,6 +9,15 @@ public class Station {
 	private String _ville;
 	private String _type;
 
+	public Station(int id, float latitude, float longitude, String nom, String ville, String type){
+		this._id = id;
+		this._latitude = latitude;
+		this._longitude = longitude;
+		this._nom = nom;
+		this._type = type;
+		this._ville = ville;
+	}
+	
 	public int getId() {
 		return _id;
 	}
