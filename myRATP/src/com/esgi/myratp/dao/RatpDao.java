@@ -22,22 +22,30 @@ public class RatpDao {
 	public final String VILLE = "villeStation";
 	public final String TYPE = "typeStation";
 	
-	public RatpDao(Context context){
-		try {
-			this.dbHelper = new DataBaseHelper(context);
-			this.dbHelper.importIfNotExist();
-		} catch (IOException e) {}
+	public RatpDao(Context context) throws IOException{
+		this.dbHelper = new DataBaseHelper(context);
+		this.dbHelper.importIfNotExist();
 	}
 	
 	public List<Station> getAllStations(){
 		List<Station> result = new ArrayList<Station>();
-		Cursor sc = this.dbHelper.getDbInstance().rawQuery("select * from " + this.TABLE + " order by nomStation collate nocase asc", null);
-        if (sc.moveToFirst()) {
-            do {
-            	result.add(MapStation(sc));
-            } while (sc.moveToNext());
-        }
-        sc.close();
+		try {
+			Cursor sc = this.dbHelper.getDbInstance().rawQuery("select * from " + this.TABLE + " order by nomStation collate nocase asc", null);
+	        if (sc.moveToFirst()) {
+	            do {
+	            	result.add(MapStation(sc));
+	            } while (sc.moveToNext());
+	        }
+	        sc.close();	
+		} catch (Exception e) {
+			Cursor sc = this.dbHelper.getDbInstance().rawQuery("SELECT * FROM sqlite_master WHERE tbl_name='Stations'", null);
+			if (sc.moveToFirst()) {
+	            do {
+	            	Log.v("TABLE", sc.getString(0));
+	            } while (sc.moveToNext());
+	        }
+	        sc.close();	
+		}
 		return result;
 	}
 	
@@ -143,11 +151,7 @@ public class RatpDao {
 	}
 	
 	public void deleteStation(int elementId){
-		dbHelper.getDbInstance().delete(TABLE, ID+"="+elementId, null);
-	}
-	
-	public void kill(){
-		this.dbHelper.getDbInstance().close();
+		this.dbHelper.getDbInstance().delete(TABLE, ID+"="+elementId, null);
 	}
 	
 	private Station MapStation(Cursor sc){

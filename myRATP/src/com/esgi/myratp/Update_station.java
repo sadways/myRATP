@@ -1,5 +1,7 @@
 package com.esgi.myratp;
 
+import java.io.IOException;
+
 import com.esgi.myratp.dao.RatpDao;
 import com.esgi.myratp.models.Station;
 
@@ -31,7 +33,12 @@ public class Update_station extends Activity implements OnClickListener{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_update_station);
-		dao = new RatpDao(this);
+		try {
+			dao = new RatpDao(this);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		txtName = (EditText)findViewById(R.id.new_name);
 		txtLigne = (EditText)findViewById(R.id.new_ligne);

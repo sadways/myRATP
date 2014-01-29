@@ -14,6 +14,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.Toast;
 
+import java.io.IOException;
 import java.util.List;
 
 import com.esgi.myratp.adapter.StationAdapter;
@@ -32,7 +33,12 @@ public class MainActivity extends ListActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		dao = new RatpDao(this);
+		try {
+			dao = new RatpDao(this);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		this.GetAndDisplayData();
 		
 		//gestion du clique sur un item pour lancer la mise à jour
@@ -103,12 +109,6 @@ public class MainActivity extends ListActivity {
              return true;
        }
        return false;
-    }
-    
-    @Override
-    protected void onDestroy(){
-    	super.onDestroy();
-    	dao.kill();
     }
     
     @Override

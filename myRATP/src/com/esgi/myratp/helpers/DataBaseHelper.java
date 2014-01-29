@@ -10,8 +10,8 @@ import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class DataBaseHelper extends SQLiteOpenHelper{
-	 private SQLiteDatabase myDataBase;
-	 private Context context;
+     private SQLiteDatabase myDataBase;
+     private Context context;
      private static final String DATABASE_NAME = "myRATPDB.sqlite";
      public final static String DATABASE_PATH = "/data/data/com.esgi.myratp/databases/";
      public static final int DATABASE_VERSION = 1;
@@ -44,7 +44,7 @@ public class DataBaseHelper extends SQLiteOpenHelper{
          boolean dbExist = checkExist();
 
          if (dbExist) {
-        	 this.myDataBase = this.getWritableDatabase();
+                 this.myDataBase = this.getWritableDatabase();
          } else {
              try {
                  copyDatabase();
@@ -56,19 +56,19 @@ public class DataBaseHelper extends SQLiteOpenHelper{
      }
 
      private void copyDatabase() throws IOException {
-         InputStream is = context.getAssets().open(DATABASE_NAME);
+    	 InputStream assestDB = context.getAssets().open(DATABASE_NAME);
 
-         OutputStream os = new FileOutputStream(DATABASE_PATH + DATABASE_NAME);
+         OutputStream appDB = new FileOutputStream(DATABASE_PATH + DATABASE_NAME, false);
 
-         byte[] buffer = new byte[4096];
+         byte[] buffer = new byte[1024];
          int length;
-         while ((length = is.read(buffer)) > 0) {
-             os.write(buffer, 0, length);
+         while ((length = assestDB.read(buffer)) > 0) {
+             appDB.write(buffer, 0, length);
          }
-         os.flush();
-         os.close();
-         is.close();
-         this.close();
+
+         appDB.flush();
+         appDB.close();
+         assestDB.close();
      }
    
      public SQLiteDatabase getDbInstance(){
@@ -79,7 +79,7 @@ public class DataBaseHelper extends SQLiteOpenHelper{
      public void onCreate(SQLiteDatabase db) {
      }
 
-	 @Override
-	 public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-	 }
+      @Override
+      public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+      }
 }
