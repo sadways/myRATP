@@ -38,7 +38,9 @@ public class Search extends Activity implements OnClickListener{
 		switch (item.getItemId()) {
         case R.id.back:
       	  Intent intent = new Intent(Search.this, MainActivity.class);
+		  setResult(RESULT_CANCELED, intent);
       	  startActivity(intent);
+      	  return true;
 		} 
       	return false;
 	}

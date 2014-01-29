@@ -98,6 +98,7 @@ public class MainActivity extends ListActivity {
         	  startActivityForResult(search_filter, 2);
               return true;
          case R.id.go:
+        	 finish();
              System.exit(0);
              return true;
        }
@@ -131,13 +132,15 @@ public class MainActivity extends ListActivity {
     	}
     	case 2 :
     	{
-    		String name = data.getStringExtra("stationName");
-        	allStations.clear();
-        	Station station = dao.getElementByName(name);
-        	if (null != station)
-        		allStations.add(station);
-        	
-        	this.DisplayData(allStations);
+    		if (resultCode == RESULT_OK){
+	    		String name = data.getStringExtra("stationName");
+	        	allStations.clear();
+	        	Station station = dao.getElementByName(name);
+	        	if (null != station)
+	        		allStations.add(station);
+	        	
+	        	this.DisplayData(allStations);
+    		}
     		break;
     	}
     	default:
