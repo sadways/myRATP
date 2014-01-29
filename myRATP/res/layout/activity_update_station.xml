@@ -24,7 +24,7 @@
         android:layout_alignBaseline="@+id/new_ligne"
         android:layout_alignBottom="@+id/new_ligne"
         android:layout_alignParentLeft="true"
-        android:text="Ligne" />
+        android:text="Type" />
     
     <TextView
         android:id="@+id/lbl_localite"
