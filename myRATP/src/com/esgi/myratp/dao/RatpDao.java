@@ -31,7 +31,7 @@ public class RatpDao {
 	
 	public List<Station> getAllStations(){
 		List<Station> result = new ArrayList<Station>();
-		Cursor sc = this.dbHelper.getDbInstance().rawQuery("SELECT * FROM " + this.TABLE, null);
+		Cursor sc = this.dbHelper.getDbInstance().rawQuery("select * from " + this.TABLE + " order by nomStation collate nocase asc", null);
         if (sc.moveToFirst()) {
             do {
             	result.add(MapStation(sc));
@@ -44,15 +44,35 @@ public class RatpDao {
 	public List<Station> getFilteredStations(Boolean all, Boolean metro, Boolean rer, Boolean tramway){
 		List<Station> result = new ArrayList<Station>();
 		
-		String query = "SELECT * FROM " + TABLE + " where nomStation != ''";
+		String query = "select * from " + TABLE + " where nomStation != ''";
 		if (!all){
-			if (metro)
-				query += " and typeStation = 'metro'";
-			if (rer)
-				query += " and typeStation = 'rer'";
-			if (tramway)
-				query += " and typeStation = 'tramway'";
+			int add = 0;
+			if (metro){
+				if (add > 0){
+					query += " or typeStation = 'metro'";
+				} else { 
+					query += " and typeStation = 'metro'";
+					add++;
+				}
+			}
+			if (rer){
+				if (add > 0){
+					query += " or typeStation = 'rer'";
+				} else { 
+					query += " and typeStation = 'rer'";
+					add++;
+				}
+			}
+			if (tramway){
+				if (add > 0){
+					query += " or typeStation = 'tram'";
+				} else { 
+					query += " and typeStation = 'tram'";
+					add++;
+				}
+			}
 		}
+		query += " order by nomStation collate nocase asc";
 		
 		Cursor sc = this.dbHelper.getDbInstance().rawQuery(query, null);
         if (sc.moveToFirst()) {
@@ -65,7 +85,7 @@ public class RatpDao {
 	}
 	
 	public Station getElementById(int elementId){
-		Cursor c = this.dbHelper.getDbInstance().rawQuery("SELECT * FROM " + this.TABLE + " WHERE idStation = " +elementId, null);
+		Cursor c = this.dbHelper.getDbInstance().rawQuery("select * from " + this.TABLE + " WHERE idStation = " +elementId, null);
 		Station station;
 		if (c.moveToFirst())
 			station = MapStation(c);
@@ -77,7 +97,8 @@ public class RatpDao {
 	}
 	
 	public Station getElementByName(String name){
-		Cursor c = this.dbHelper.getDbInstance().rawQuery("SELECT * FROM " + this.TABLE + " WHERE nomStation = '" +name+"'", null);
+		Cursor c = this.dbHelper.getDbInstance().rawQuery("select * from " + this.TABLE + " WHERE nomStation = '" +name+"'", null);
+		Log.v("QUERY", "select * from " + this.TABLE + " WHERE nomStation = '" +name+"'");
 		Station station;
 		if (c.moveToFirst())
 			station = MapStation(c);
@@ -89,7 +110,7 @@ public class RatpDao {
 	}
 	
 	public void addStation(ContentValues values){
-		Cursor c = this.dbHelper.getDbInstance().rawQuery("SELECT MAX(idStation) FROM " + this.TABLE, null);
+		Cursor c = this.dbHelper.getDbInstance().rawQuery("select max(idStation) from " + this.TABLE, null);
 		int maxId;
 		if (c.moveToFirst()){
 			maxId = c.getInt(0);
@@ -100,7 +121,6 @@ public class RatpDao {
 		if (maxId != 0){
 			try {
 				this.dbHelper.getDbInstance().insert(TABLE, null, values);
-				Log.v("DB", "success");	
 			} catch (Exception e) {
 				Log.v("DB", e.getMessage());
 			}

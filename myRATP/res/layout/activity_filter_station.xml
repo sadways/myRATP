@@ -22,8 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginTop="60dp"
-        android:text="Metro"
-        android:checked="true" />
+        android:text="Metro" />
  
     <CheckBox
         android:id="@+id/chkRER"
@@ -45,7 +44,7 @@
         android:id="@+id/btn_filter_stations"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="170dp"
+        android:layout_marginTop="210dp"
         android:text="Filtrer"
         android:ems="7" />
  

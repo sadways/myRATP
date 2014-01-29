@@ -24,6 +24,7 @@ public class MainActivity extends ListActivity {
 	private List<Station> allStations; 
     private AlertDialog.Builder build;
     private RatpDao dao;
+    Intent intent;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -86,23 +87,21 @@ public class MainActivity extends ListActivity {
           case R.id.news:
         	  Intent intent_new = new Intent(MainActivity.this, Update_station.class);
         	  intent_new.putExtra("update", false);
-        	  startActivity(intent_new);
+        	  startActivityForResult(intent_new, 0);
         	  return true;
           case R.id.filter:
         	  Intent intent_filter = new Intent(MainActivity.this, Filter_station.class);
         	  startActivityForResult(intent_filter, 1);
               return true;
+          case R.id.search:
+        	  Intent search_filter = new Intent(MainActivity.this, Search.class);
+        	  startActivityForResult(search_filter, 2);
+              return true;
          case R.id.go:
-             finish();
+             System.exit(0);
              return true;
        }
        return false;
-   }
-    
-    @Override
-    protected void onResume(){
-    	super.onResume();
-    	this.GetAndDisplayData();
     }
     
     @Override
@@ -114,22 +113,47 @@ public class MainActivity extends ListActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
     	super.onActivityResult(requestCode, resultCode, data);
-    	
-    	Boolean metro, tramway, rer, all;
-    	metro = data.getBooleanExtra("metro", false);
-    	tramway = data.getBooleanExtra("tramway", false);
-    	rer = data.getBooleanExtra("rer", false);
-    	all = data.getBooleanExtra("all", false);
-    	
-    	allStations = dao.getFilteredStations(all, metro, rer, tramway);
-    	this.GetAndDisplayData();
+    	switch (requestCode){
+    	case 0:
+    		this.GetAndDisplayData();
+    		break;
+    	case 1:
+    	{
+    		Boolean metro, tramway, rer, all;
+        	metro = data.getBooleanExtra("metro", false);
+        	tramway = data.getBooleanExtra("tramway", false);
+        	rer = data.getBooleanExtra("rer", false);
+        	all = data.getBooleanExtra("all", false);
+        	
+        	allStations = dao.getFilteredStations(all, metro, rer, tramway);
+        	this.DisplayData(allStations);
+    		break;
+    	}
+    	case 2 :
+    	{
+    		String name = data.getStringExtra("stationName");
+        	allStations.clear();
+        	Station station = dao.getElementByName(name);
+        	if (null != station)
+        		allStations.add(station);
+        	
+        	this.DisplayData(allStations);
+    		break;
+    	}
+    	default:
+    		break;
+    	}
     }
 
     private void GetAndDisplayData(){
     	//alimentation de la ListView
-    	if (null == stations)
-    		allStations = dao.getAllStations();
-    	
+    	allStations = dao.getAllStations();
+		StationAdapter adapter = new StationAdapter(this, android.R.layout.simple_expandable_list_item_1, allStations);
+		this.setListAdapter(adapter);
+    }
+    
+    private void DisplayData(List<Station> allStations){
+    	//alimentation de la ListView
 		StationAdapter adapter = new StationAdapter(this, android.R.layout.simple_expandable_list_item_1, allStations);
 		this.setListAdapter(adapter);
     }

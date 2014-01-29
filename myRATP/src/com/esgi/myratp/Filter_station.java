@@ -83,6 +83,7 @@ public class Filter_station extends Activity implements OnClickListener{
 		intent.putExtra("rer", rer);
 		intent.putExtra("all", all);
 		intent.putExtra("tramway", tramway);
+		intent.putExtra("filter", true);
 		setResult(RESULT_OK, intent);
 		finish();
 	}

@@ -5,7 +5,11 @@
 	
 	<item android:id="@+id/filter"
 	android:title="@string/Filtrer" 
-	android:icon="@drawable/ic_filter"/>
+	android:icon="@drawable/ic_search"/>
+	
+	<item android:id="@+id/search"
+	android:title="Rechercher" 
+	android:icon="@drawable/ic_filter"/>	
 	
 	<item android:id="@+id/go"
 	android:title="@string/Quitter" 
