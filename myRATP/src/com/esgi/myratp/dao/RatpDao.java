@@ -24,7 +24,7 @@ public class RatpDao {
 	
 	public RatpDao(Context context) throws IOException{
 		this.dbHelper = new DataBaseHelper(context);
-		this.dbHelper.importIfNotExist();
+		//this.dbHelper.importIfNotExist();
 	}
 	
 	public List<Station> getAllStations(){
@@ -147,7 +147,11 @@ public class RatpDao {
 	}
 	
 	public void updateStation(int stationId, ContentValues values){
-		this.dbHelper.getDbInstance().update(this.TABLE, values, this.ID +"="+stationId, null);
+		try {
+			this.dbHelper.getDbInstance().update(this.TABLE, values, this.ID +"="+stationId, null);	
+		} catch (Exception e) {
+			String ex = e.getMessage();
+		}
 	}
 	
 	public void deleteStation(int elementId){
