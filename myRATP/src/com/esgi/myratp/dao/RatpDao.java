@@ -24,7 +24,6 @@ public class RatpDao {
 	
 	public RatpDao(Context context) throws IOException{
 		this.dbHelper = new DataBaseHelper(context);
-		//this.dbHelper.importIfNotExist();
 	}
 	
 	public List<Station> getAllStations(){
@@ -38,13 +37,7 @@ public class RatpDao {
 	        }
 	        sc.close();	
 		} catch (Exception e) {
-			Cursor sc = this.dbHelper.getDbInstance().rawQuery("SELECT * FROM sqlite_master WHERE tbl_name='Stations'", null);
-			if (sc.moveToFirst()) {
-	            do {
-	            	Log.v("TABLE", sc.getString(0));
-	            } while (sc.moveToNext());
-	        }
-	        sc.close();	
+			Log.v("ERROR_DB", e.getMessage());
 		}
 		return result;
 	}
