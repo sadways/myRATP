@@ -41,6 +41,18 @@ public class RatpDao {
 		return result;
 	}
 	
+	public List<Station> searchStationsByName(String name){
+		List<Station> result = new ArrayList<Station>();
+		Cursor sc = this.dbHelper.getDbInstance().rawQuery("select * from " + this.TABLE + " WHERE nomStation = '" +name+"'", null);
+        if (sc.moveToFirst()) {
+            do {
+            	result.add(MapStation(sc));
+            } while (sc.moveToNext());
+        }
+        sc.close();
+		return result;
+	}
+	
 	public List<Station> getFilteredStations(Boolean all, Boolean metro, Boolean rer, Boolean tramway){
 		List<Station> result = new ArrayList<Station>();
 		

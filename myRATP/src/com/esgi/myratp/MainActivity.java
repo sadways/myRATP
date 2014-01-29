@@ -136,10 +136,7 @@ public class MainActivity extends ListActivity {
     	{
     		if (resultCode == RESULT_OK){
 	    		String name = data.getStringExtra("stationName");
-	        	allStations.clear();
-	        	Station station = dao.getElementByName(name);
-	        	if (null != station)
-	        		allStations.add(station);
+	        	allStations = dao.searchStationsByName(name);
 	        	
 	        	this.DisplayData(allStations);
     		}

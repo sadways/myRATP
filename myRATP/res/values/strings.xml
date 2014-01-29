@@ -20,5 +20,7 @@
     <string name="Tramway">Tramway</string>
     <string name="Toutes">Toutes</string>
     <string name="Rechercher">Rechercher</string>
+    <string name="title_activity_see_map">SeeMap</string>
+    <string name="mapKey">AIzaSyAWTb7PRNqVhVxFeG-bjeuL20DFIu40hLY</string>
 
 </resources>

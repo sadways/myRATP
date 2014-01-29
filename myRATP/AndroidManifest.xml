@@ -13,7 +13,7 @@
         android:icon="@drawable/iconeratp"
         android:label="MyRATP"
         android:theme="@style/AppTheme" >
-
+        
         <!-- Splash screen -->
         <activity
             android:name="com.esgi.myratp.SplashScreen"
@@ -28,23 +28,23 @@
         </activity>
         <activity
             android:name="com.esgi.myratp.MainActivity"
-            android:screenOrientation="portrait"
-            android:label="Liste des stations" >
+            android:label="Liste des stations"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.esgi.myratp.Update_station"
-            android:screenOrientation="portrait"
-            android:label="Modifier une station" >
+            android:label="Modifier une station"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.esgi.myratp.Filter_station"
-            android:screenOrientation="portrait"
-            android:label="@string/title_activity_filter_station" >
+            android:label="@string/title_activity_filter_station"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.esgi.myratp.Search"
-            android:screenOrientation="portrait"
-            android:label="@string/title_activity_search" >
+            android:label="@string/title_activity_search"
+            android:screenOrientation="portrait" >
         </activity>
     </application>
 
