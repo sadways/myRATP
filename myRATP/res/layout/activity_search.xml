@@ -10,6 +10,7 @@
     
     <EditText
         android:id="@+id/search_name"
+        android:inputType="text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -20,10 +21,8 @@
         android:id="@+id/btn_search_station"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/lbl_longitude"
-        android:layout_below="@+id/new_longitude"
         android:layout_marginTop="70dp"
-        android:text="Rechercher"
+        android:text="@string/Rechercher"
         android:ems="7" />
 
 </RelativeLayout>
