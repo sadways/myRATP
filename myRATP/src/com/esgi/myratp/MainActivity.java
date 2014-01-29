@@ -35,11 +35,11 @@ public class MainActivity extends ListActivity {
 
 		try {
 			dao = new RatpDao(this);
+			this.GetAndDisplayData();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		this.GetAndDisplayData();
 		
 		//gestion du clique sur un item pour lancer la mise à jour
 		this.getListView().setOnItemClickListener(new OnItemClickListener() {

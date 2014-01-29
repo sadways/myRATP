@@ -56,7 +56,7 @@ public class DataBaseHelper extends SQLiteOpenHelper{
      }
 
      private void copyDatabase() throws IOException {
-    	 InputStream assestDB = context.getAssets().open(DATABASE_NAME);
+             InputStream assestDB = context.getAssets().open(DATABASE_NAME);
 
          OutputStream appDB = new FileOutputStream(DATABASE_PATH + DATABASE_NAME, false);
 
@@ -72,7 +72,7 @@ public class DataBaseHelper extends SQLiteOpenHelper{
      }
    
      public SQLiteDatabase getDbInstance(){
-    	 return this.myDataBase;
+             return this.myDataBase;
      }
      
      @Override
@@ -82,4 +82,4 @@ public class DataBaseHelper extends SQLiteOpenHelper{
       @Override
       public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
       }
-}
+}	
