@@ -120,14 +120,16 @@ public class MainActivity extends ListActivity {
     		break;
     	case 1:
     	{
-    		Boolean metro, tramway, rer, all;
-        	metro = data.getBooleanExtra("metro", false);
-        	tramway = data.getBooleanExtra("tramway", false);
-        	rer = data.getBooleanExtra("rer", false);
-        	all = data.getBooleanExtra("all", false);
-        	
-        	allStations = dao.getFilteredStations(all, metro, rer, tramway);
-        	this.DisplayData(allStations);
+    		if (resultCode == RESULT_OK){
+	    		Boolean metro, tramway, rer, all;
+	        	metro = data.getBooleanExtra("metro", false);
+	        	tramway = data.getBooleanExtra("tramway", false);
+	        	rer = data.getBooleanExtra("rer", false);
+	        	all = data.getBooleanExtra("all", false);
+	        	
+	        	allStations = dao.getFilteredStations(all, metro, rer, tramway);
+	        	this.DisplayData(allStations);
+    		}
     		break;
     	}
     	case 2 :

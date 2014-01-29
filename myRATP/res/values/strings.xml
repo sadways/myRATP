@@ -16,9 +16,9 @@
     <string name="title_activity_splash_screen">SplashScreen</string>
     <string name="title_activity_search">Search</string>
     <string name="Metro">Metro</string>
-    <string name="RER">Metro</string>
-    <string name="Tramway">Metro</string>
-    <string name="Toute">Metro</string>
+    <string name="RER">RER</string>
+    <string name="Tramway">Tramway</string>
+    <string name="Toutes">Toutes</string>
     <string name="Rechercher">Rechercher</string>
 
 </resources>

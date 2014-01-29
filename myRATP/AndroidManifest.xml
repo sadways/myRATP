@@ -28,18 +28,22 @@
         </activity>
         <activity
             android:name="com.esgi.myratp.MainActivity"
+            android:screenOrientation="portrait"
             android:label="Liste des stations" >
         </activity>
         <activity
             android:name="com.esgi.myratp.Update_station"
+            android:screenOrientation="portrait"
             android:label="Modifier une station" >
         </activity>
         <activity
             android:name="com.esgi.myratp.Filter_station"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_filter_station" >
         </activity>
         <activity
             android:name="com.esgi.myratp.Search"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_search" >
         </activity>
     </application>

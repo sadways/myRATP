@@ -98,7 +98,6 @@ public class RatpDao {
 	
 	public Station getElementByName(String name){
 		Cursor c = this.dbHelper.getDbInstance().rawQuery("select * from " + this.TABLE + " WHERE nomStation = '" +name+"'", null);
-		Log.v("QUERY", "select * from " + this.TABLE + " WHERE nomStation = '" +name+"'");
 		Station station;
 		if (c.moveToFirst())
 			station = MapStation(c);

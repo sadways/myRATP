@@ -71,6 +71,7 @@ public class Filter_station extends Activity implements OnClickListener{
 	          case R.id.back:
 	        	  Intent intent = new Intent(Filter_station.this, MainActivity.class);
 	        	  startActivity(intent);
+	    		  setResult(RESULT_CANCELED, intent);
 	              return true;
 	       }
 	       return false;
