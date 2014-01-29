@@ -40,6 +40,7 @@ public class Search extends Activity implements OnClickListener{
       	  Intent intent = new Intent(Search.this, MainActivity.class);
 		  setResult(RESULT_CANCELED, intent);
       	  startActivity(intent);
+    	  finish();
       	  return true;
 		} 
       	return false;

@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -42,7 +43,7 @@ public class MainActivity extends ListActivity {
 				Intent intent = new Intent(getApplicationContext(), Update_station.class);
 				intent.putExtra("update", true);
 				intent.putExtra("ID", allStations.get(arg2).getId());
-				startActivity(intent);
+				startActivityForResult(intent, 0);
 			}
         });
 		
@@ -99,7 +100,6 @@ public class MainActivity extends ListActivity {
               return true;
          case R.id.go:
         	 finish();
-             System.exit(0);
              return true;
        }
        return false;

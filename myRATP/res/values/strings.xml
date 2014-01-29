@@ -10,17 +10,15 @@
     <string name="Filtrer">Filtrer</string>
     <string name="Quitter">Quitter</string>
     <string name="Retour">Retour</string>
-    <string name="title_activity_new_station">New_station</string>
     <string name="title_activity_update_station">Modifier une station</string>
     <string name="title_activity_filter_station">Filtrer</string>
     <string name="title_activity_splash_screen">SplashScreen</string>
-    <string name="title_activity_search">Search</string>
+    <string name="title_activity_search">Rechercher une station</string>
     <string name="Metro">Metro</string>
     <string name="RER">RER</string>
     <string name="Tramway">Tramway</string>
     <string name="Toutes">Toutes</string>
     <string name="Rechercher">Rechercher</string>
-    <string name="title_activity_see_map">SeeMap</string>
     <string name="mapKey">AIzaSyAWTb7PRNqVhVxFeG-bjeuL20DFIu40hLY</string>
 
 </resources>

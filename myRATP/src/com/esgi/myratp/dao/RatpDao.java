@@ -43,7 +43,7 @@ public class RatpDao {
 	
 	public List<Station> searchStationsByName(String name){
 		List<Station> result = new ArrayList<Station>();
-		Cursor sc = this.dbHelper.getDbInstance().rawQuery("select * from " + this.TABLE + " WHERE nomStation = '" +name+"'", null);
+		Cursor sc = this.dbHelper.getDbInstance().rawQuery("select * from " + this.TABLE + " WHERE nomStation = '" +name+"' collate nocase", null);
         if (sc.moveToFirst()) {
             do {
             	result.add(MapStation(sc));

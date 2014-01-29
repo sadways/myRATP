@@ -68,6 +68,7 @@ public class Update_station extends Activity implements OnClickListener{
           case R.id.back:
         	  Intent intent = new Intent(Update_station.this, MainActivity.class);
         	  startActivity(intent);
+        	  finish();
               return true;
        }
        return false;
@@ -81,6 +82,7 @@ public class Update_station extends Activity implements OnClickListener{
 			&& txtLatitude.getText().toString().length() > 0
 			&& txtLongitude.getText().toString().length() > 0) {
 			this.SaveData();
+			finish();
 		}
 		else {
 			AlertDialog.Builder build = new AlertDialog.Builder(Update_station.this);
@@ -93,6 +95,8 @@ public class Update_station extends Activity implements OnClickListener{
             });
 			build.create().show();
 		}
+		
+		finish();
 	}
 	
 	private final void SaveData(){
@@ -108,7 +112,5 @@ public class Update_station extends Activity implements OnClickListener{
 		} else {
 			dao.addStation(values);
 		}
-		
-		finish();
 	}
 }

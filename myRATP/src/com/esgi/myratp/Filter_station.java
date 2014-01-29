@@ -72,6 +72,7 @@ public class Filter_station extends Activity implements OnClickListener{
 	        	  Intent intent = new Intent(Filter_station.this, MainActivity.class);
 	        	  startActivity(intent);
 	    		  setResult(RESULT_CANCELED, intent);
+	        	  finish();
 	              return true;
 	       }
 	       return false;
