@@ -43,7 +43,7 @@ public class RatpDao {
 	
 	public List<Station> searchStationsByName(String name){
 		List<Station> result = new ArrayList<Station>();
-		Cursor sc = this.dbHelper.getDbInstance().rawQuery("select * from " + this.TABLE + " WHERE nomStation = '" +name+"' collate nocase", null);
+		Cursor sc = this.dbHelper.getDbInstance().rawQuery("select * from " + this.TABLE + " where nomStation like '%" +name+"%' collate nocase", null);
         if (sc.moveToFirst()) {
             do {
             	result.add(MapStation(sc));
@@ -109,7 +109,7 @@ public class RatpDao {
 	}
 	
 	public Station getElementByName(String name){
-		Cursor c = this.dbHelper.getDbInstance().rawQuery("select * from " + this.TABLE + " WHERE nomStation = '" +name+"'", null);
+		Cursor c = this.dbHelper.getDbInstance().rawQuery("select * from " + this.TABLE + " where nomStation = '" +name+"'", null);
 		Station station;
 		if (c.moveToFirst())
 			station = MapStation(c);
